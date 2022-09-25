@@ -18,7 +18,7 @@ services:
     ports:
       - '5000:5000'
     volumes:
-      - ./backend//services/mainservice:/app
+      - ./backend//services/mainservice:/app/mainservice
     depends_on:
       - decisionservice
       - accountingservice
@@ -29,7 +29,7 @@ services:
     ports:
       - '5001:5001'
     volumes:
-      - ./backend//services/decisionservice:/app
+      - ./backend//services/decisionservice:/app/decisionservice
 
   accountingservice:
     restart: always
@@ -37,4 +37,4 @@ services:
     ports:
       - '5002:5002'
     volumes:
-      - ./backend/services/accountingservice:/app
+      - ./backend/services/accountingservice:/app/accountingservice
