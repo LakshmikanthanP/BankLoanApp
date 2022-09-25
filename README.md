@@ -43,7 +43,10 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]]
+(https://example.com)
+
+Demo: [product-demo]
 
 
 
@@ -52,23 +55,65 @@
 
 
 
-### Built With
+## Backend API services are divided in to 3 micro-services. 
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+* Mainservice - main orchestrator service to call other two microservices
+* Accounting Service API - generate mock balance sheet
+* Decision Service  - simulates decide loan application
 
-* [![React][React.js]][React-url]
-* [![Flask]]
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## Frontend 
+
+simple react app 
+
+## Port Numbers
+
+* Frontend run on - localhost:3000
+* Application Service API run on - localhost:5000
+* Accounting Service API run on - localhost:5002
+* Decision Service API run on - localhost:5001
 
 
+### How to run locally
 
-<!-- GETTING STARTED -->
-## Getting Started
+```bash
+# to run the web app (make sure to run npm install beforehand)
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
+cd frontend
+npm start 
+
+# to run application api
+
+# application-service-api
+cd applicationservice
+pipenv shell
+python3 applicationservice.py
+
+# accounting-service-api
+cd applicationservice
+pipenv shell
+python3 accountingservice.py
+
+# decision-service-api
+cd decisionservice
+pipenv shell
+python3 decisionengine.py
+
+## docker run
+# harcoded the url of microservices for docker. Change the urls in mainservice and react to localhost for local testing.
+docker compose up
+
+
+### Folder structure
+
+```bash
+├── backend
+    │ services  ├── decisionservice         
+            │   ├── accountingservice         
+            │   ├── mainservice         
+└── frontend
+    ├── public
+    └── src
 
 
 ### Installation
@@ -96,3 +141,4 @@ Use this space to list resources you find helpful and would like to give credit 
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
 [product-screenshot]: images/screenshot.png 
+[product-demo]: images/demo.mov 

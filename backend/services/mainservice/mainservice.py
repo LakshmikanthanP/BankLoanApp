@@ -48,7 +48,7 @@ class GetBalanceSheet(Resource):
             print("get balancesheet")
             data = request.get_json()
             print(data)
-            balancesheet = requests.post('http://127.0.0.1:5002/getaccounts', json=data)
+            balancesheet = requests.post('http://accountingservice:5002/getaccounts', json=data)
             print(balancesheet.text)
 
             # find average assets for last 12 months
@@ -100,7 +100,7 @@ class ProcesLoan(Resource):
 
             # call decision engine with user details, balance sheet and preassement
 
-            loanresult = requests.post('http://127.0.0.1:5001/decideloan', json=json.dumps(loanrequest))
+            loanresult = requests.post('http://decisionservice:5001/decideloan', json=json.dumps(loanrequest))
             print(loanresult.content)
 
             return loanresult.text

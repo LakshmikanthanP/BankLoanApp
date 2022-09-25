@@ -17,7 +17,7 @@ import { useState } from "react";
         businessdetails: { name: userName, year: yearEstablished, loanAmount: loanAmount},
         accountprovider: "Xerox"
       }
-      fetch("http://localhost:5000/balancesheet", {
+      fetch("http://mainservice:5000/balancesheet", {
         method: 'POST',
         headers: new Headers({
             'Access-Control-Allow-Origin': '*',
@@ -57,7 +57,7 @@ import { useState } from "react";
     const handleSubmit= (e) => {
       e.preventDefault();
 
-  fetch("http://localhost:5000/procesloan", {
+  fetch("http://mainservice:5000/procesloan", {
     method: 'POST',
     headers: new Headers({
         'Access-Control-Allow-Origin': '*',
