@@ -1,0 +1,40 @@
+version: '3'
+services:
+  frontend:
+    restart: always
+    build: ./frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
+    environment: 
+      - CHOKIDAR_USEPOLLING=true
+    stdin_open: true
+    
+  mainservice:
+    restart: always
+    build: ./backend/services/mainservice
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./backend//services/mainservice:/app
+    depends_on:
+      - decisionservice
+      - accountingservice
+      
+  decisionservice:
+    restart: always
+    build: ./backend//services/decisionservice
+    ports:
+      - '5001:5001'
+    volumes:
+      - ./backend//services/decisionservice:/app
+
+  accountingservice:
+    restart: always
+    build: ./backend/services/accountingservice
+    ports:
+      - '5002:5002'
+    volumes:
+      - ./backend/services/accountingservice:/app

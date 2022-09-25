@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_restful import Api, Resource, reqparse, request
-from flask_cors import CORS
+from flask_cors import CORS,cross_origin
 import json
 import requests
 
@@ -10,7 +10,17 @@ from model.DataModels import BusinessDetails,BalanceSheetSummary,LoanRequestInfo
 app = Flask(__name__)
 api = Api(app)
 parser = reqparse.RequestParser()
-CORS(app)
+CORS(app, allow_headers=['Content-Type', 'Access-Control-Allow-Origin',
+                         'Access-Control-Allow-Headers', 'Access-Control-Allow-Methods'])
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin','*')
+    response.headers.add('Access-Control-Allow-Headers','Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods','GET,PUT,POST,DELETE')
+    response.headers["Access-Control-Allow-Headers"] = \
+        "Access-Control-Allow-Headers,  Access-Control-Allow-Origin, Origin,Accept, " + \
+        "X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"
+    return response
 
 
 class Home(Resource):
@@ -22,7 +32,6 @@ class Home(Resource):
 
 
 api.add_resource(Home, '/')
-
 
 class GetBalanceSheet(Resource):
     def __init__(self):

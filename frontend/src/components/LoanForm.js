@@ -20,6 +20,7 @@ import { useState } from "react";
       fetch("http://localhost:5000/balancesheet", {
         method: 'POST',
         headers: new Headers({
+            'Access-Control-Allow-Origin': '*',
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }),
@@ -59,8 +60,10 @@ import { useState } from "react";
   fetch("http://localhost:5000/procesloan", {
     method: 'POST',
     headers: new Headers({
+        'Access-Control-Allow-Origin': '*',
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        
     }),
     body: JSON.stringify(loanrequesInfo)
     })
